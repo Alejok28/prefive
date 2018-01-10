@@ -1,0 +1,46 @@
+<div class="post-container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h2><%= form_title %></h2>
+      <%= form_with(model: post, local: true) do |form| %>
+      <% if post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+          <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :subject,'Materia *' %>
+        <%= form.text_field :subject, id: :post_subject, autofocus: true, class:"form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :teacher, 'Profesor *' %>
+        <%= form.text_field :teacher, id: :post_teacher, class:"form-control"  %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :score, 'Calificación *' %>
+        <%= form.number_field :score, max: 5, class:"form-control"  %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description, 'Descripción' %>
+        <%= form.text_area :description, id: :post_description,rows:8, class:"form-control"  %>
+      </div>
+      <small><i>Los campos marcados con * son obligatorios</i></small>
+      <br>
+      <div class="form-group">
+        <%= form.submit "Compartir", class: "form-control btn btn-primary" %>
+      </div>
+      <% end %>
+      <%= link_to 'Atras', posts_path %>
+    </div>
+  </div>
+</div>
