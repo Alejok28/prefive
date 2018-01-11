@@ -14,4 +14,6 @@
 class Post < ApplicationRecord
   validates :subject, :teacher, :score, presence: true
   validates :score, numericality: { less_than_or_equal_to: 5 }
+  mount_uploaders :files, FileUploader
+  serialize :files, JSON # If you use SQLite, add this line.
 end
