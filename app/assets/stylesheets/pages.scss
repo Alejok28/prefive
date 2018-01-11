@@ -1,3 +1,16 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.PreFive-info{
+  padding-top: -5px;
+  background-image: url("https://offcampus.gmu.edu/wp-content/uploads/2017/10/studying-blue-.jpg");
+  display: block;
+  max-height: 100%;
+  padding: 0;
+
+  p{
+    line-height: 1.5;
+    font-size: 20px;
+  }
+}
