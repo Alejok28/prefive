@@ -6,24 +6,29 @@
           <h2><%= @post.subject %></h2>
           <h4><%= @post.teacher %></h4>
           <h5><%= @post.score %></h5>
-          <h5><%= @post.user.country %></h5>
-          <h5><%= @post.user.city %></h5>
+          <h5><%= @post.user.city %>-<%= @post.user.country %></h5>
           <h5><%= @post.user.college %></h5>
-          <p><%= @post.description %></p>
-          <p>publicado por <%= @post.user.name %></p>
+          <p> <b>Descripción: </b><%= @post.description %></p>
+          <p>publicado por <%= @post.user.name %> hace <%= time_ago_in_words(@post.created_at) %></p>
+          <%= link_to 'Editar', edit_post_path(@post),class:"btn btn-primary" %>
+          <%= link_to 'Atrás', posts_path,class:"btn btn-primary" %>
         </div>
-        <div class="post-images col-sm-8">
+        <div class="post-files col-sm-8">
           <% if @post.files? %>
-          <% @post.files.each do |file| %>
-          <div class="galery">
-            <%= link_to(image_tag(file.thumb.url, alt: 'Image'), file.url, target: '_blank') %>
-          </div>
-          <% end %>
+            <% @post.files.each do |file| %>
+              <% if file.content_type.match('image') %>
+                <div class="galery">
+                  <%= link_to(image_tag(file.url, alt: 'Image'), file.url, target: '_blank') %>
+                </div>
+              <%else%>
+                <div class="doc">
+                  <%= link_to('descargar documento', file.url, target: '_blank', class:"btn btn-success") %>
+                </div>
+              <% end %>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
-    <%= link_to 'Editar', edit_post_path(@post) %> |
-    <%= link_to 'Atrás', posts_path %>
   </div>
 </div>

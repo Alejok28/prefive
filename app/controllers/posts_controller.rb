@@ -3,8 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!,  except: [:index]
 
   def index
-    @posts = Post.all
-
+    @posts = Post.order("created_at DESC").subject(params[:subject]).teacher(params[:teacher])
   end
 
   def show

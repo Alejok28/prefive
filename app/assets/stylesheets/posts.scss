@@ -3,12 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body{
   background-color: #f5f5f2;
+  font-size: 16px;
 }
 .navbar{
   margin-bottom:  0;
 }
+
 .show-container{
-  .post-images{
+  .post-files{
     .galery{
       margin: 5px;
       border: 1px solid #ccc;
@@ -16,7 +18,20 @@ body{
       &:hover{
         border: 1px solid #777;
       }
+      img{
+        width: 250px;
+        height: 250px;
+      }
     }
-
+  }
+  .doc{
+    padding: 30px;
+  }
+}
+table{
+  tr{
+    &:hover{
+      background-color: rgb(240, 240, 240);
+    }
   }
 }
