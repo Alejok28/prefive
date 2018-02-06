@@ -3,10 +3,6 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  name                   :string           default(""), not null
-#  country                :string           default(""), not null
-#  city                   :string           default(""), not null
-#  college                :string           default(""), not null
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -19,6 +15,10 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  name                   :string
+#  country                :string
+#  city                   :string
+#  college                :string
 #
 
 require 'test_helper'
