@@ -16,7 +16,9 @@
       </div>
       <div class="col-sm-9 latest-posts">
         <h2>Últimas publicaciones</h2>
-
+        <div class="text-right">
+          <%= link_to 'Compartir', new_post_path, class: "btn btn-primary" %>
+        </div>
         <table class="table">
           <thead>
             <tr>
@@ -46,10 +48,9 @@
             <% end %>
           </tbody>
         </table>
-        <div class="text-right">
-          <%= link_to 'Compartir', new_post_path, class: "btn btn-primary" %>
-        </div>
+
       </div>
     </div>
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

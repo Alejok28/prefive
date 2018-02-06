@@ -225,13 +225,15 @@ es:
     attributes:
       user:
         name: "Nombre"
-        email: "Correo Electronico"
+        email: "Correo Electrónico"
         password: "Contraseña"
-        password_confirmation: "Confirmar Contraseña"
         remember_me: "Recuerdame"
       post:
         title: "Título"
         description: "Descripción"
+        subject: "Materia"
+        teacher: "Profesor"
+        score: "Calificación"
     errors:
       models:
         user:
@@ -246,6 +248,13 @@ es:
               confirmation: "no coincide."
         post:
           attributes:
+            subject:
+              blank: "no puede estar vacía"
+            teacher:
+              blank: "no puede estar vacío"
+            score:
+              blank: "no puede estar vacía"
+              not_a_number: "debe ser un número entre 0 y 5"
             title:
               blank: "no puede estar vacío"
             description:
