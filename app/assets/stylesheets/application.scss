@@ -2,3 +2,13 @@
 @import "bootstrap";
 @import "posts";
 @import "pages";
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: rgb(134, 54, 142) !important;
+}
+.navbar-header {
+	img{
+		margin-top: -5px;
+		height: 30px;
+	}
+}
