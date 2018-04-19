@@ -10,7 +10,9 @@
           <h5><%= @post.user.college %></h5>
           <p> <b>Descripción: </b><%= @post.description %></p>
           <p>publicado por <%= @post.user.name %> hace <%= time_ago_in_words(@post.created_at) %></p>
+          <%if user_signed_in? && current_user == @post.user %>
           <%= link_to 'Editar', edit_post_path(@post),class:"btn btn-primary" %>
+          <% end %>
           <%= link_to 'Atrás', posts_path,class:"btn btn-primary" %>
         </div>
         <div class="post-files col-sm-8">
