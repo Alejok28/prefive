@@ -1,0 +1,64 @@
+// Place all the styles related to the reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div.reviews{
+	margin-top: 30px;
+	padding: 5px;
+	border-radius: 15px;
+	div.panel{
+		margin-bottom: 8px;
+		border-radius: 5px;
+		div.panel-body{
+			div.review-rating{
+				margin-top: 2px;
+				font-size: 16px;
+			}
+			div.review-content{
+				p.review-info{
+					font-size: 13px;
+					font-style: italic;
+					font-weight: bold;
+					border-bottom: 1px solid rgb(220, 220, 220);
+					margin-bottom: 2px;
+				}
+				p.review-decription{
+					font-size: 15px;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+	form#new_review{
+		border-radius: 5px;
+		border: 1px solid rgb(220, 220, 220);
+		background-color: white;
+		padding: 10px;
+		textarea#review_description{
+			resize: vertical;
+		}
+		.rating {
+			width: 160px;
+			padding-left: 5px;
+			text-align: left;
+			unicode-bidi: bidi-override;
+			direction: rtl;
+		}
+		.rating > span {
+			display: inline-block;
+			font-size: 20px;
+			width: 25px;
+		}
+		.rating > span:hover:before,
+		.rating > span:hover ~ span:before {
+			color: orange;
+			cursor: pointer;
+		}
+		.hover{
+			color: orange;
+			cursor: pointer;
+		}
+		.submit-review{
+			padding: 5px 30px ;
+		}
+	}
+}

@@ -16,6 +16,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
+  has_many :reviews
   validates :subject, :teacher, :score, presence: true
   validates :score, numericality: { less_than_or_equal_to: 5 }
   validates_presence_of :files
@@ -24,4 +25,8 @@ class Post < ApplicationRecord
 
   scope :subject, ->(subject) { where("subject like ?", "%#{subject}%") }
   scope :teacher, ->(teacher) { where("teacher like ?", "%#{teacher}%") }
+
+  def review_by?(user)
+    reviews.exists?(user: user)
+  end
 end
