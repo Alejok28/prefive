@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: reviews
+#
+#  id          :integer          not null, primary key
+#  description :text
+#  value       :decimal(, )
+#  user_id     :integer
+#  post_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: 
+  value: 9.99
+  user: one
+  post: one
+
+two:
+  description: 
+  value: 9.99
+  user: two
+  post: two

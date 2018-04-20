@@ -6,12 +6,29 @@
           <h2><%= @post.subject %></h2>
           <h4><%= @post.teacher %></h4>
           <h5><%= @post.score %></h5>
-          <h5><%= @post.user.city %>-<%= @post.user.country %></h5>
           <h5><%= @post.user.college %></h5>
-          <p> <b>Descripción: </b><%= @post.description %></p>
-          <p>publicado por <%= @post.user.name %> hace <%= time_ago_in_words(@post.created_at) %></p>
+          <h5><%= @post.user.city %></h5>
+          <!-- <h5><%= @post.user.city %>-<%= @post.user.country %></h5> -->
+          <p>
+            <b>Descripción: </b><%= @post.description %>
+          </p>
+          <div class="post-review">
+            <% (1..5).each do |i| %>
+              <% if total_review(@post)>=i %>
+              <span id="5" style="color:orange" class="glyphicon glyphicon-star"></span>
+              <% else %>
+              <span id="5" class="glyphicon glyphicon-star" data-rating=5></span>
+              <% end %>
+            <% end %>
+            <small>
+              (<%= @post.reviews.count%> opiniones)
+            </small>
+          </div>
+          <small>
+            Por <%= @post.user.name %>-<%= (@post.created_at).strftime("%d/%b/%Y") %>
+          </small> <br>
           <%if user_signed_in? && current_user == @post.user %>
-          <%= link_to 'Editar', edit_post_path(@post),class:"btn btn-primary" %>
+            <%= link_to 'Editar', edit_post_path(@post),class:"btn btn-primary" %>
           <% end %>
           <%= link_to 'Atrás', posts_path,class:"btn btn-primary" %>
         </div>
@@ -33,23 +50,66 @@
       </div>
       <div class="row">
         <div class="col-sm-7 col-sm-offset-4">
-          <div class="comments">
+          <!-- <div class="comments">
             <%@post.comments.each do |comment| %>
             <div class="panel panel-default">
-
               <div class="panel-body"><%=(comment.body)%>-<small><i>Publicado por <%=comment.user.email%> hace <%=time_ago_in_words(comment.created_at)%></i></small> </div>
             </div>
             <% end %>
-
             <% if signed_in? %>
             <h5>Nuevo comentario</h5>
               <%= form_for [@post, @post.comments.build] do |f| %>
               <div class="form-group">
                 <%= f.text_area :body, class: "form-control", placeholder: "Agregar comentario" %>
               </div>
-
               <div class="actions text-right">
                 <%= f.submit "Comentar", class: "btn btn-primary" %>
+              </div>
+              <% end %>
+            <% end %>
+          </div> -->
+          <div class="reviews">
+            <%@post.reviews.each do |review| %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="review-rating">
+                  <% 5.times do |i| %>
+                    <% if review.value>i %>
+                    <span id="5" style="color:orange" class="glyphicon glyphicon-star"></span>
+                    <% else %>
+                    <span id="5" class="glyphicon glyphicon-star" data-rating=5></span>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="review-content">
+                  <p class="review-info">
+                    Por <%=review.user.name%>-<%=(review.created_at).strftime("%d/%b/%Y")%>
+                  </p>
+                  <p class="review-decription">
+                    <%=(review.description)%>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% end %>
+
+            <% if signed_in? && !(@post.review_by?(current_user))%>
+              <%= form_for [@post, @post.reviews.build] do |f| %>
+              <div class="form-group">
+                <%= f.text_area :description, class: "form-control", placeholder: "Danos tu opinión" %>
+              </div>
+              <div style="display: none" class="form-group">
+                <%= f.number_field :value, value:0,class: "form-control", placeholder: "value" %>
+              </div>
+              <div class="rating">
+                <span id="5" class="glyphicon glyphicon-star" data-rating=5></span>
+                <span id="4" class="glyphicon glyphicon-star" data-rating=4></span>
+                <span id="3" class="glyphicon glyphicon-star" data-rating=3></span>
+                <span id="2" class="glyphicon glyphicon-star" data-rating=2></span>
+                <span id="1" class="glyphicon glyphicon-star" data-rating=1></span>
+              </div>
+              <div class="actions text-right">
+                <%= f.button "Publicar", class: "submit-review btn btn-primary" %>
               </div>
               <% end %>
             <% end %>
