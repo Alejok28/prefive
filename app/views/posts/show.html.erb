@@ -1,14 +1,35 @@
 <div class="show-container">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-        <div class="post-info col-sm-4">
+      <div class="general-info col-sm-10 col-sm-offset-1">
+        <div class="post-files col-sm-4">
+          <% if @post.files? %>
+            <% if @post.files.first.content_type.match('image') %>
+              <a class="dynamic-link" href="" target="_blank">
+                <img class="dynamic-image" src="<%=@post.files.first.url%>" >
+              </a>
+              <br>
+            <%end%>
+            <% @post.files.each do |file| %>
+              <% if file.content_type.match('image') %>
+                <div class="galery">
+                  <%= image_tag(file.url, alt: 'Image', class: "thumb")%>
+                </div>
+              <%else%>
+                <div class="doc">
+                  <%= link_to('descargar documento', file.url, target: '_blank', class:"btn btn-success") %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="post-info col-sm-8">
           <h2><%= @post.subject %></h2>
-          <h4><%= @post.teacher %></h4>
-          <h5><%= @post.score %></h5>
-          <h5><%= @post.user.college %></h5>
-          <h5><%= @post.user.city %></h5>
-          <!-- <h5><%= @post.user.city %>-<%= @post.user.country %></h5> -->
+          <p><b>Profesor: </b><%= @post.teacher %>.</p>
+          <p><b>Calificación: </b><%= @post.score %> puntos.</p>
+          <p><b>Universidad: </b><%= @post.user.college %>.</p>
+          <p><%= @post.user.city %>-<%= @post.user.country %></p>
           <p>
             <b>Descripción: </b><%= @post.description %>
           </p>
@@ -32,24 +53,10 @@
           <% end %>
           <%= link_to 'Atrás', posts_path,class:"btn btn-primary" %>
         </div>
-        <div class="post-files col-sm-8">
-          <% if @post.files? %>
-            <% @post.files.each do |file| %>
-              <% if file.content_type.match('image') %>
-                <div class="galery">
-                  <%= link_to(image_tag(file.url, alt: 'Image'), file.url, target: '_blank') %>
-                </div>
-              <%else%>
-                <div class="doc">
-                  <%= link_to('descargar documento', file.url, target: '_blank', class:"btn btn-success") %>
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
       </div>
+
       <div class="row">
-        <div class="col-sm-7 col-sm-offset-4">
+        <div class="reviews-container col-sm-10 col-sm-offset-1">
           <!-- <div class="comments">
             <%@post.comments.each do |comment| %>
             <div class="panel panel-default">

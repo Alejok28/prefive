@@ -33,10 +33,10 @@
           <tbody>
             <% @posts.each do |post| %>
               <tr>
-                <td><%= post.subject %></td>
-                <td><%= post.teacher %></td>
+                <td><%= post.subject.truncate(30) %></td>
+                <td><%= post.teacher.truncate(20) %></td>
                 <td><%= post.score %></td>
-                <td><%= post.description.truncate(50) %></td>
+                <td><%= post.description.truncate(20) %></td>
                 <td class="actions">
                   <%= link_to 'Ver', post %>
                   <%if user_signed_in? && current_user == post.user %>

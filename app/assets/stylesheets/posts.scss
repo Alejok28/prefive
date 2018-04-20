@@ -8,22 +8,39 @@ body{
 .navbar{
   margin-bottom:  0;
 }
-
-.show-container{
+.general-info{
+  margin-top: 20px;
+  .post-info{
+    p{
+      text-align: justify;
+    }
+    a{
+      margin-top: 10px;
+    }
+  }
   .post-files{
+    img.dynamic-image{
+      width: 300px;
+      height: 300px;
+      border-radius: 5px;
+    }
     .galery{
       margin: 5px;
       border: 1px solid #ccc;
       float: left;
       &:hover{
-        border: 1px solid #777;
+        border: 1px solid #86368e;
+        box-shadow: 2px 5px 8px  #86368e;
+        cursor: pointer;
       }
-      img{
-        width: 250px;
-        height: 250px;
+      img.thumb{
+        width: 50px;
+        height: 50px;
       }
     }
   }
+}
+.show-container{
   .doc{
     padding: 30px;
   }
