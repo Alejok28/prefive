@@ -1,7 +1,7 @@
 <div class="post-container">
   <div class="container">
     <div class="row">
-      <div class="col-sm-3 search">
+      <div class="col-md-3 search">
         <h2>Buscar</h2>
         <%= form_tag posts_path, method: :get do %>
           <div class="form-group">
@@ -14,7 +14,7 @@
         <% end %>
 
       </div>
-      <div class="col-sm-9 latest-posts">
+      <div class="col-md-9 latest-posts">
         <h2>Últimas publicaciones</h2>
         <div class="text-right">
           <%= link_to 'Compartir', new_post_path, class: "btn btn-primary" %>
@@ -24,7 +24,6 @@
             <tr>
               <th>Materia</th>
               <th>Profesor</th>
-              <th>Calificación</th>
               <th>Descripción</th>
               <th>Acciones</th>
             </tr>
@@ -35,7 +34,6 @@
               <tr>
                 <td><%= post.subject.truncate(30) %></td>
                 <td><%= post.teacher.truncate(20) %></td>
-                <td><%= post.score %></td>
                 <td><%= post.description.truncate(20) %></td>
                 <td class="actions">
                   <%= link_to 'Ver', post %>
