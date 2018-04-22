@@ -225,8 +225,13 @@ es:
     attributes:
       user:
         name: "Nombre"
+        city: "Ciudad"
+        country: "País"
+        college: "Universidad"
         email: "Correo Electrónico"
         password: "Contraseña"
+        password_confirmation: "Confirmar contraseña"
+        current_password: "Contraseña actual"
         remember_me: "Recuerdame"
       post:
         title: "Título"
