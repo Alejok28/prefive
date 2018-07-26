@@ -23,8 +23,9 @@ class Post < ApplicationRecord
   mount_uploaders :files, FileUploader
   serialize :files, JSON # If you use SQLite, add this line.
 
-  scope :subject, ->(subject) { where("subject like ?", "%#{subject}%") }
-  scope :teacher, ->(teacher) { where("teacher like ?", "%#{teacher}%") }
+  scope :subject, ->(subject) { where("subject LIKE ?", "%#{subject}%") }
+  scope :teacher, ->(teacher) { where("teacher LIKE ?", "%#{teacher}%") }
+  scope :college, ->(college) { joins(:user).where("college LIKE ?", "%#{college}%") }
 
   def review_by?(user)
     reviews.exists?(user: user)

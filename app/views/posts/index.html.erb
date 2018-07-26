@@ -10,11 +10,18 @@
           <div class="form-group">
             <%= text_field_tag :teacher, params[:teacher], class: "form-control", placeholder: "Profesor" %>
           </div>
+          <div class="form-group">
+            <%= text_field_tag :college, params[:college], class: "form-control", placeholder: "Universidad" %>
+          </div>
+          <!-- <div class="form-group">
+            <%= select_tag 'college', options_for_select(User.all.collect{ |u| u.college }), class: "form-control", prompt:"Selecciona la universidad"%>
+          </div> -->
           <%= submit_tag "Buscar", name: nil, class: "btn btn-primary btn-md" %>
         <% end %>
 
       </div>
       <div class="col-md-9 latest-posts">
+        <% if @posts.any? %>
         <h2>Últimas publicaciones</h2>
         <div class="text-right">
           <%= link_to 'Compartir', new_post_path, class: "btn btn-primary" %>
@@ -45,6 +52,13 @@
               </tr>
             <% end %>
           </tbody>
+            <% else %>
+            <div class="no-info text-center">
+              <h4>Aún no hay contenido con esas carácteristicas.</h4>
+              <p>¡Ingresa tu contenido para tener más información que compartir!</p>
+              <%= link_to 'Compartir', new_post_path, class: "btn btn-primary" %>
+            </div>
+            <% end %>
         </table>
 
       </div>

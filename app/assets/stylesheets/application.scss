@@ -13,6 +13,24 @@
 		height: 30px;
 	}
 }
+.pagination{
+  li{
+    a{
+      color:black;
+    }
+  }
+  .active{
+    span{
+      background-color: rgb(134, 54, 142) !important;
+      border: none !important;
+    }
+  }
+  .next, .prev{
+    a{
+      color:  rgb(134, 54, 142) !important;
+    }
+  }
+}
 
 @media (max-width: 991px) {
   .navbar-header {
