@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :edit_only_user_post, only: [:edit]
 
   def index
-    @posts = Post.order("created_at DESC").subject(params[:subject]).teacher(params[:teacher]).paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.order("created_at DESC").subject(params[:subject]).teacher(params[:teacher]).college(params[:college]).paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     def edit_only_user_post
       post_user = Post.find(params[:id]).user
       if post_user != current_user
-        redirect_to root_path
+        redirect_to root_path, notice: "No tienes permisos para editar esa publicación"
       end
     end
 end
