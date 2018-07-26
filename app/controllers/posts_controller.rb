@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!,  except: [:index]
+  before_action :edit_only_user_post, only: [:edit]
 
   def index
     @posts = Post.order("created_at DESC").subject(params[:subject]).teacher(params[:teacher]).paginate(:page => params[:page], :per_page => 10)
@@ -59,5 +60,12 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:subject, :teacher, :score, :description,{files: []})
+    end
+
+    def edit_only_user_post
+      post_user = Post.find(params[:id]).user
+      if post_user != current_user
+        redirect_to root_path
+      end
     end
 end
