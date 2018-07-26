@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :edit_only_user_post, only: [:edit]
 
   def index
-    @posts = Post.order("created_at DESC").subject(params[:subject]).teacher(params[:teacher]).college(params[:college]).paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.order("created_at DESC").subject(params[:subject]).teacher(params[:teacher]).college(params[:college]).paginate(:page => params[:page], :per_page => 15)
   end
 
   def show
